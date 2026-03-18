@@ -225,7 +225,7 @@ function App() {
                       rel="noreferrer"
                     >
                       <img
-                        src="/profilePic.png"
+                        src="/ProfilePic.png"
                         alt="Portrait of Sunita Choudhary"
                         className="hero-photo"
                       />
