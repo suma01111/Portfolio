@@ -219,7 +219,11 @@ function App() {
               <aside className="hero-side">
                 <div className="hero-profile">
                   <div className="hero-photo-wrap">
-                    
+                  <a
+                      href="https://drive.google.com/drive/folders/1gwKNpii8Czt0Y2zziTnAW5kQxuC7oWAG"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                     
                       <img
                         src="/ProfilePic.png"
