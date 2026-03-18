@@ -219,11 +219,17 @@ function App() {
               <aside className="hero-side">
                 <div className="hero-profile">
                   <div className="hero-photo-wrap">
-                    <img
-                      src="/profilePic.png"
-                      alt="Portrait of Sunita Choudhary"
-                      className="hero-photo"
-                    />
+                    <a
+                      href="https://drive.google.com/drive/folders/1gwKNpii8Czt0Y2zziTnAW5kQxuC7oWAG"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="/profilePic.png"
+                        alt="Portrait of Sunita Choudhary"
+                        className="hero-photo"
+                      />
+                    </a>
                   </div>
                   <div className="hero-card">
                     <p className="hero-meta">IIIT Vadodara · India</p>

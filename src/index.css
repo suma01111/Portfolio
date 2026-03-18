@@ -478,7 +478,7 @@ section {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(236, 72, 153, 0.7);
+  border-color: rgba(236, 211, 72, 0.7);
   box-shadow: 0 20px 48px rgba(124, 58, 237, 0.35);
 }
 
@@ -752,8 +752,8 @@ section {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.25);
+  border-color: rgba(251, 191, 36, 0.8);
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.35);
 }
 
 .form-textarea {
