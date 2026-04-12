@@ -1,3 +1,6 @@
+import { useState, useEffect, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+
 const data = {
   name: 'Sunita Choudhary',
   headline: 'Aspiring Full Stack Developer & Software Engineer',
@@ -92,6 +95,65 @@ const data = {
 }
 
 function App() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [isLoading, setIsLoading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const formRef = useRef(null)
+
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_y5n4xsn'
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_zg1hm0n'
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'OjZKyN7RJs1i6v0lT'
+
+  // Initialize EmailJS when component mounts
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY)
+  }, [EMAILJS_PUBLIC_KEY])
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target
+    setFormData((prev) => ({ ...prev, [id]: value }))
+    // Clear messages when user starts typing
+    setSuccessMessage('')
+    setErrorMessage('')
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in all fields.')
+      return
+    }
+
+    setIsLoading(true)
+    setErrorMessage('')
+    setSuccessMessage('')
+
+    if (
+      EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID_HERE' ||
+      EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID_HERE' ||
+      EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY_HERE'
+    ) {
+      setErrorMessage('EmailJS is not configured. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY.')
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current)
+
+      setSuccessMessage('Message sent successfully! I\'ll get back to you soon.')
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      setErrorMessage('Failed to send message. Please try again later.')
+      console.error('EmailJS error:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div>
       <header className="site-header">
@@ -153,12 +215,22 @@ function App() {
                 <p className="hero-role">{data.headline}</p>
                 <p className="hero-summary">{data.objective}</p>
                 <div className="hero-actions">
-                  <a href="#contact" className="btn">
-                    Hire Me
-                  </a>
-                  <a href="#projects" className="btn btn-outline">
-                    View Projects
-                  </a>
+                  <div className="hero-action-row hero-action-row--primary">
+                    <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn">
+                      View Resume
+                    </a>
+                    <a href="/resume.pdf" download className="btn btn-outline">
+                      Download Resume
+                    </a>
+                  </div>
+                  <div className="hero-action-row hero-action-row--secondary">
+                    <a href="#contact" className="btn btn-outline">
+                      Hire Me
+                    </a>
+                    <a href="#projects" className="btn btn-outline">
+                      View Projects
+                    </a>
+                  </div>
                 </div>
                 <div className="hero-social">
                   <div className="hero-social-label">Let&apos;s connect</div>
@@ -413,33 +485,60 @@ function App() {
               If you&apos;d like to collaborate, discuss an opportunity, or just say hi, feel free to reach out.
             </p>
             <div className="contact-grid">
-              <form
-                className="contact-form"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  alert('This is a static demo form. Wire it to a backend or email service when you deploy.')
-                }}
-              >
+              <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
+                {successMessage && (
+                  <div className="form-message form-message--success">
+                    {successMessage}
+                  </div>
+                )}
+                {errorMessage && (
+                  <div className="form-message form-message--error">
+                    {errorMessage}
+                  </div>
+                )}
                 <div className="form-group">
                   <label className="form-label" htmlFor="name">
                     Name
                   </label>
-                  <input id="name" className="form-input" type="text" required />
+                  <input
+                    id="name"
+                    name="name"
+                    className="form-input"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label className="form-label" htmlFor="email">
                     Email
                   </label>
-                  <input id="email" className="form-input" type="email" required />
+                  <input
+                    id="email"
+                    name="email"
+                    className="form-input"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label className="form-label" htmlFor="message">
                     Message
                   </label>
-                  <textarea id="message" className="form-textarea" required />
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="form-textarea"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
-                <button type="submit" className="btn">
-                  Send Message
+                <button type="submit" className="btn" disabled={isLoading}>
+                  {isLoading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
 
