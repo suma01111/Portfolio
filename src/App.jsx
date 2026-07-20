@@ -55,6 +55,30 @@ const skillGroups = [
   { label: 'Foundations', items: ['DSA', 'OOP', 'Operating Systems', 'Computer Networks'] },
 ]
 
+const certifications = [
+  {
+    code: 'DB / 01',
+    title: 'Databases for Developers — Foundations',
+    issuer: 'Oracle Dev Gym',
+    focus: 'Relational design · SQL · Query fundamentals',
+    description: 'Completed hands-on database training focused on writing reliable SQL, modelling relational data, and building a strong foundation for data-driven applications.',
+  },
+  {
+    code: 'VC / 02',
+    title: 'Git & GitHub Full Stack Development',
+    issuer: 'Professional Masterclass',
+    focus: 'Version control · Branching · Collaboration',
+    description: 'Developed practical command of modern Git workflows, repository management, branching strategies, and collaborative full-stack development.',
+  },
+  {
+    code: 'OS / 03',
+    title: 'GirlScript Summer of Code 2024',
+    issuer: 'Open-source Contributor',
+    focus: 'Contribution workflows · Code review · Community',
+    description: 'Contributed to real-world open-source projects while working with maintainers, navigating review cycles, and learning production-ready collaboration.',
+  },
+]
+
 const Arrow = () => <span aria-hidden="true">↗</span>
 
 function App() {
@@ -94,7 +118,7 @@ function App() {
     }
   }
 
-  const navItems = [['Work', '#projects'], ['Capabilities', '#skills'], ['Journey', '#journey'], ['Contact', '#contact']]
+  const navItems = [['Experience', '#experience'], ['Work', '#projects'], ['Capabilities', '#skills'], ['Journey', '#journey'], ['Contact', '#contact']]
 
   return (
     <div className="site-shell">
@@ -150,6 +174,32 @@ function App() {
           </div>
         </section>
 
+        <section className="section experience-section" id="experience">
+          <div className="container">
+            <div className="section-heading experience-heading">
+              <div><p className="eyebrow">Professional experience</p><h2>Engineering with<br />AI at the core.</h2></div>
+              <p>Applying full-stack engineering and generative AI to improve how software teams understand repositories, define work, and produce technical documentation.</p>
+            </div>
+            <article className="experience-card">
+              <div className="experience-meta">
+                <div className="company-mark">XA</div>
+                <div><p className="eyebrow">May 2026 — Present</p><h3>Xelron AI</h3><p>Remote internship</p></div>
+              </div>
+              <div className="experience-role">
+                <p>Software Development Engineer Intern</p>
+                <h3>AI / Full Stack</h3>
+                <div className="experience-tags"><span>LLMs</span><span>Prompt Engineering</span><span>React.js</span><span>Node.js</span><span>Generative AI</span></div>
+              </div>
+              <ol className="experience-impact">
+                <li><span>01</span><p>Building AI-powered applications that automate software engineering workflows and improve developer productivity.</p></li>
+                <li><span>02</span><p>Developing solutions that analyse GitHub repositories and pull requests to produce summaries, acceptance criteria, edge-case analysis, and implementation prompts.</p></li>
+                <li><span>03</span><p>Automating technical documentation and engineering processes with LLM-based systems, improving consistency while reducing manual effort.</p></li>
+                <li><span>04</span><p>Collaborating in an Agile team to design, develop, and deploy scalable full-stack AI solutions using modern web technologies.</p></li>
+              </ol>
+            </article>
+          </div>
+        </section>
+
         <section className="section projects-section" id="projects">
           <div className="container">
             <div className="section-heading">
@@ -170,6 +220,26 @@ function App() {
                     <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
                   </div>
                   <a className="project-open" href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><Arrow /></a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section certifications-section" id="certifications">
+          <div className="container">
+            <div className="section-heading">
+              <div><p className="eyebrow">Credentials</p><h2>Learning backed<br />by practice.</h2></div>
+              <p>Focused programs that strengthened my database, collaboration, and open-source engineering skills.</p>
+            </div>
+            <div className="certification-grid">
+              {certifications.map((certificate) => (
+                <article className="certificate" key={certificate.title}>
+                  <div className="certificate-top"><span>{certificate.code}</span><span>Verified learning</span></div>
+                  <p className="certificate-issuer">{certificate.issuer}</p>
+                  <h3>{certificate.title}</h3>
+                  <p className="certificate-focus">{certificate.focus}</p>
+                  <p className="certificate-description">{certificate.description}</p>
                 </article>
               ))}
             </div>
@@ -209,15 +279,30 @@ function App() {
                 <p className="muted">Building foundations in algorithms, software engineering, databases, systems, and modern web development.</p>
               </article>
               <div className="journey-stack">
-                <article><span>Leadership</span><h3>Secretary · MOD5 Dance Club</h3><p>Leading performances and workshops from idea through execution.</p></article>
-                <article><span>Community</span><h3>Core Member · Cultural Committee</h3><p>Coordinating institute-wide events across teams, schedules, and logistics.</p></article>
-                <article><span>Open source</span><h3>GSSoC 2024 Contributor</h3><p>Collaborating with maintainers and contributing through real-world workflows.</p></article>
+                <article><span>Core curriculum</span><h3>Systems &amp; Software</h3><p>Algorithms, operating systems, computer networks, software engineering, and object-oriented programming.</p></article>
+                <article><span>Applied engineering</span><h3>Full-Stack Development</h3><p>Turning product requirements into responsive interfaces, maintainable APIs, and structured data models.</p></article>
+                <article><span>Current focus</span><h3>AI-assisted Products</h3><p>Exploring LLM applications, prompt design, repository intelligence, and developer-productivity workflows.</p></article>
               </div>
             </div>
-            <div className="credentials">
-              <span>Also completed</span>
-              <p>Oracle Dev Gym — Databases for Developers</p>
-              <p>Git &amp; GitHub Full Stack Development Masterclass</p>
+          </div>
+        </section>
+
+        <section className="section leadership-section" id="leadership">
+          <div className="container leadership-layout">
+            <div className="leadership-title">
+              <p className="eyebrow">Positions of responsibility</p>
+              <h2>Leadership beyond<br />the codebase.</h2>
+              <p>Campus roles that strengthened how I organise, communicate, and guide teams through high-energy, deadline-driven work.</p>
+            </div>
+            <div className="leadership-list">
+              <article>
+                <span className="leadership-number">01</span>
+                <div><p className="leadership-org">MOD5 Dance Club · IIIT Vadodara</p><h3>Secretary</h3><p>Leading the planning and delivery of performances and workshops—from creative direction and rehearsal schedules to team coordination and final execution.</p><div className="leadership-skills"><span>Team leadership</span><span>Event execution</span><span>Communication</span></div></div>
+              </article>
+              <article>
+                <span className="leadership-number">02</span>
+                <div><p className="leadership-org">Cultural Committee · IIIT Vadodara</p><h3>Core Member</h3><p>Supporting institute-wide cultural events by coordinating logistics, schedules, and cross-functional teams to keep delivery organised and on time.</p><div className="leadership-skills"><span>Operations</span><span>Cross-team coordination</span><span>Ownership</span></div></div>
+              </article>
             </div>
           </div>
         </section>
