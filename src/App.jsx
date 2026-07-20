@@ -22,7 +22,7 @@ const projects = [
     impact: ['Donor–recipient matching', 'Validated request handling', 'Centralised blood records'],
     stack: ['MongoDB', 'Express.js', 'React', 'Node.js'],
     github: 'https://github.com/suma01111/BloodBank',
-    live: null,
+    live: 'https://blood-bank-management-system-bbm.vercel.app/',
     color: 'violet',
   },
   {
