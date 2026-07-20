@@ -144,14 +144,14 @@ function App() {
           <div className="hero-grid-lines" aria-hidden="true" />
           <div className="container hero-layout">
             <div className="hero-copy">
-              <p className="eyebrow"><span className="status-dot" /> Available for internships · 2026</p>
-              <h1>I turn complex<br />ideas into <em>clear,</em><br />useful products.</h1>
+              <p className="eyebrow"><span className="status-dot" /> Software Developer · AI &amp; Full Stack</p>
+              <h1>Hi, I’m<br /><em>Sunita Choudhary.</em></h1>
               <p className="hero-intro">
-                I’m Sunita, a full-stack developer and computer science student at IIIT Vadodara. I build thoughtful web experiences backed by solid engineering.
+                I’m a Computer Science student at IIIT Vadodara and a Software Development Engineer Intern at Xelron AI. I build reliable full-stack applications and AI-powered developer tools.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#projects">Explore my work <Arrow /></a>
-                <a className="text-link" href={`mailto:${profile.email}`}>Let’s work together <Arrow /></a>
+                <a className="button button-primary" href="#projects">View my projects <Arrow /></a>
+                <a className="text-link" href="/resume.pdf" target="_blank" rel="noreferrer">View résumé <Arrow /></a>
               </div>
             </div>
 
@@ -163,9 +163,6 @@ function App() {
                   <span>Based in India</span><span>23.1751° N</span>
                 </div>
               </div>
-              <div className="orbit orbit-one" aria-hidden="true" />
-              <div className="orbit orbit-two" aria-hidden="true" />
-              <div className="code-note" aria-hidden="true"><span>build()</span><br />design + logic</div>
             </div>
           </div>
           <div className="container hero-foot">
@@ -177,7 +174,7 @@ function App() {
         <section className="section experience-section" id="experience">
           <div className="container">
             <div className="section-heading experience-heading">
-              <div><p className="eyebrow">Professional experience</p><h2>Engineering with<br />AI at the core.</h2></div>
+              <div><p className="eyebrow">Experience</p><h2>Professional experience</h2></div>
               <p>Applying full-stack engineering and generative AI to improve how software teams understand repositories, define work, and produce technical documentation.</p>
             </div>
             <article className="experience-card">
@@ -203,7 +200,7 @@ function App() {
         <section className="section projects-section" id="projects">
           <div className="container">
             <div className="section-heading">
-              <div><p className="eyebrow">Selected work</p><h2>Projects with<br />a purpose.</h2></div>
+              <div><p className="eyebrow">Selected work</p><h2>Projects</h2></div>
               <p>From campus operations to sustainable commerce—each project starts with a real problem and ends with a working system.</p>
             </div>
             <div className="projects-list">
@@ -229,7 +226,7 @@ function App() {
         <section className="section certifications-section" id="certifications">
           <div className="container">
             <div className="section-heading">
-              <div><p className="eyebrow">Credentials</p><h2>Learning backed<br />by practice.</h2></div>
+              <div><p className="eyebrow">Credentials</p><h2>Certifications</h2></div>
               <p>Focused programs that strengthened my database, collaboration, and open-source engineering skills.</p>
             </div>
             <div className="certification-grid">
@@ -250,7 +247,7 @@ function App() {
           <div className="container skills-layout">
             <div className="skills-intro">
               <p className="eyebrow">Capabilities</p>
-              <h2>Building across<br />the stack.</h2>
+              <h2>Technical skills</h2>
               <p>I care about the whole product: an interface that feels intuitive, an API that stays understandable, and data that is designed deliberately.</p>
             </div>
             <div className="skill-board">
@@ -268,7 +265,7 @@ function App() {
         <section className="section journey-section" id="journey">
           <div className="container">
             <div className="section-heading compact">
-              <div><p className="eyebrow">Journey</p><h2>Learning in public.<br />Leading in practice.</h2></div>
+              <div><p className="eyebrow">Education</p><h2>Academic background</h2></div>
             </div>
             <div className="journey-grid">
               <article className="journey-feature">
@@ -291,7 +288,7 @@ function App() {
           <div className="container leadership-layout">
             <div className="leadership-title">
               <p className="eyebrow">Positions of responsibility</p>
-              <h2>Leadership beyond<br />the codebase.</h2>
+              <h2>Positions of responsibility</h2>
               <p>Campus roles that strengthened how I organise, communicate, and guide teams through high-energy, deadline-driven work.</p>
             </div>
             <div className="leadership-list">
@@ -311,8 +308,8 @@ function App() {
           <div className="container contact-layout">
             <div className="contact-copy">
               <p className="eyebrow">Start a conversation</p>
-              <h2>Have a challenge<br />worth solving?</h2>
-              <p>I’m looking for internship opportunities, meaningful collaborations, and teams that care about building well.</p>
+              <h2>Get in touch</h2>
+              <p>I’m open to software engineering opportunities, technical collaborations, and conversations about full-stack development and applied AI.</p>
               <a className="mail-link" href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a>
               <div className="social-row">
                 <a href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
