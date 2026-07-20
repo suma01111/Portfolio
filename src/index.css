@@ -114,3 +114,8 @@ img{max-width:100%}
 @media(hover:none),(pointer:coarse){
   .project:hover{transform:none;box-shadow:none;padding-inline:0}.certificate:hover,.tech-item:hover,.project-action:hover,.button:hover,.nav-cta:hover{transform:none}.portrait-frame{animation:none}
 }
+
+/* Stable, extra-smooth project hover with no positional movement */
+.motion-ready .project.reveal-item.is-visible,.project{transform:none;transition:background-color .55s cubic-bezier(.22,1,.36,1),border-color .55s cubic-bezier(.22,1,.36,1),box-shadow .55s cubic-bezier(.22,1,.36,1)}
+.motion-ready .project.reveal-item.is-visible:hover,.project:hover{transform:none;background-color:rgba(15,23,42,.72);border-color:#46556d;box-shadow:inset 4px 0 0 rgba(251,191,36,.82)}
+.project h3{transition:color .45s cubic-bezier(.22,1,.36,1)}
