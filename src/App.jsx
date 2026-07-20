@@ -15,13 +15,14 @@ const profile = {
 const projects = [
   {
     number: '01',
-    name: 'College Management System',
-    type: 'Role-based academic platform',
+    name: 'Blood Bank Management System',
+    type: 'Healthcare coordination platform',
     description:
-      'A full-stack system that brings administrators, faculty, and students into one structured workflow—from course allocation to results.',
-    impact: ['3 role-specific dashboards', 'Automated student enrollment', 'Relational data architecture'],
-    stack: ['React', 'Node.js', 'Express', 'MySQL'],
-    github: 'https://github.com/suma01111/College-Management-System-DBMS',
+      'A MERN-stack donor and recipient management platform designed to simplify blood requests, availability tracking, and donor matching.',
+    impact: ['Donor–recipient matching', 'Validated request handling', 'Centralised blood records'],
+    stack: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+    github: 'https://github.com/suma01111/BloodBank',
+    live: null,
     color: 'violet',
   },
   {
@@ -31,28 +32,31 @@ const projects = [
     description:
       'An e-commerce platform that makes environmental impact visible alongside the shopping experience, with catalog, cart, and order flows.',
     impact: ['Product impact tracking', 'RESTful backend services', 'End-to-end order flow'],
-    stack: ['React', 'Node.js', 'MongoDB', 'REST API'],
+    stack: ['MongoDB', 'Express.js', 'React', 'Node.js'],
     github: 'https://github.com/suma01111/Eco-Commerce',
+    live: null,
     color: 'lime',
   },
   {
     number: '03',
-    name: 'Blood Bank System',
-    type: 'Emergency response coordination',
+    name: 'College Management System',
+    type: 'Role-based academic platform',
     description:
-      'A database-driven donor and recipient management tool designed to reduce friction in urgent blood requests and matching.',
-    impact: ['Donor–recipient matching', 'Validated request handling', 'Structured MySQL records'],
-    stack: ['JavaScript', 'MySQL', 'HTML', 'CSS'],
-    github: 'https://github.com/suma01111/BloodBank',
+      'A full-stack system that brings administrators, faculty, and students into one structured workflow—from course allocation to results.',
+    impact: ['3 role-specific dashboards', 'Automated student enrollment', 'Relational data architecture'],
+    stack: ['React', 'Node.js', 'Express.js', 'MySQL'],
+    github: 'https://github.com/suma01111/College-Management-System-DBMS',
+    live: null,
     color: 'coral',
   },
 ]
 
 const skillGroups = [
-  { label: 'Languages', items: ['JavaScript', 'C++', 'C', 'SQL'] },
-  { label: 'Build', items: ['React', 'Node.js', 'Express', 'HTML', 'CSS'] },
-  { label: 'Data', items: ['MongoDB', 'MySQL', 'DBMS'] },
-  { label: 'Foundations', items: ['DSA', 'OOP', 'Operating Systems', 'Computer Networks'] },
+  { label: 'Languages', items: [{ name: 'JavaScript', icon: 'javascript/javascript-original.svg' }, { name: 'C++', icon: 'cplusplus/cplusplus-original.svg' }, { name: 'C', icon: 'c/c-original.svg' }, { name: 'SQL', icon: 'azuresqldatabase/azuresqldatabase-original.svg' }] },
+  { label: 'Frontend', items: [{ name: 'React', icon: 'react/react-original.svg' }, { name: 'HTML5', icon: 'html5/html5-original.svg' }, { name: 'CSS3', icon: 'css3/css3-original.svg' }] },
+  { label: 'Backend', items: [{ name: 'Node.js', icon: 'nodejs/nodejs-original.svg' }, { name: 'Express.js', icon: 'express/express-original.svg' }] },
+  { label: 'Databases', items: [{ name: 'MongoDB', icon: 'mongodb/mongodb-original.svg' }, { name: 'MySQL', icon: 'mysql/mysql-original.svg' }] },
+  { label: 'Tools', items: [{ name: 'Git', icon: 'git/git-original.svg' }, { name: 'GitHub', icon: 'github/github-original.svg' }, { name: 'VS Code', icon: 'vscode/vscode-original.svg' }] },
 ]
 
 const certifications = [
@@ -131,7 +135,7 @@ function App() {
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
             ))}
-            <a className="nav-cta" href="/resume.pdf" target="_blank" rel="noreferrer">Résumé <Arrow /></a>
+            <a className="nav-cta" href="/resume.pdf" target="_blank" rel="noreferrer">Resume <Arrow /></a>
           </nav>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu">
             <span /><span />
@@ -151,7 +155,7 @@ function App() {
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">View my projects <Arrow /></a>
-                <a className="text-link" href="/resume.pdf" target="_blank" rel="noreferrer">View résumé <Arrow /></a>
+                <a className="text-link" href="/resume.pdf" target="_blank" rel="noreferrer">View Resume <Arrow /></a>
               </div>
             </div>
 
@@ -215,8 +219,17 @@ function App() {
                       {project.impact.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                     <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+                    <div className="project-actions">
+                      {project.live ? (
+                        <a className="project-action project-action-live" href={project.live} target="_blank" rel="noreferrer">Live Demo <Arrow /></a>
+                      ) : (
+                        <span className="project-action project-action-disabled">Live demo not published</span>
+                      )}
+                      <a className="project-action project-action-github" href={project.github} target="_blank" rel="noreferrer">
+                        <img src="https://cdn.simpleicons.org/github/ffffff" alt="" aria-hidden="true" /> GitHub Repository
+                      </a>
+                    </div>
                   </div>
-                  <a className="project-open" href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><Arrow /></a>
                 </article>
               ))}
             </div>
@@ -255,7 +268,12 @@ function App() {
                 <div className="skill-row" key={group.label}>
                   <span className="skill-index">0{index + 1}</span>
                   <h3>{group.label}</h3>
-                  <div>{group.items.map((item) => <span key={item}>{item}</span>)}</div>
+                  <div>{group.items.map((item) => (
+                    <span className="tech-item" key={item.name}>
+                      <img src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.icon}`} alt="" aria-hidden="true" />
+                      {item.name}
+                    </span>
+                  ))}</div>
                 </div>
               ))}
             </div>
