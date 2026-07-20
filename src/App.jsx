@@ -101,6 +101,49 @@ function App() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) return undefined
+
+    const revealItems = document.querySelectorAll(
+      '.section-heading, .experience-card, .project, .certificate, .skills-intro, .skill-row, .journey-grid, .leadership-title, .leadership-list article, .contact-copy, .contact-form',
+    )
+
+    revealItems.forEach((item, index) => {
+      item.classList.add('reveal-item')
+      item.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 70}ms`)
+    })
+
+    document.documentElement.classList.add('motion-ready')
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      }),
+      { threshold: 0.12, rootMargin: '0px 0px -40px' },
+    )
+    revealItems.forEach((item) => observer.observe(item))
+
+    let frame
+    const updateSpotlight = (event) => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`)
+        document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`)
+      })
+    }
+    window.addEventListener('pointermove', updateSpotlight, { passive: true })
+
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', updateSpotlight)
+      document.documentElement.classList.remove('motion-ready')
+    }
+  }, [])
+
   const scrollHome = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     setMenuOpen(false)
