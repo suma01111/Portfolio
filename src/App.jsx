@@ -34,7 +34,7 @@ const projects = [
     impact: ['Transaction management with budgets & category filters', 'Interactive charts and 12-month trend analytics', 'Dark mode, budget warnings & PDF/CSV exports'],
     stack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS'],
     github: 'https://github.com/suma01111/FinTrack',
-    live: null,
+    // live: null,
     color: 'lime',
   },
   {
@@ -46,7 +46,7 @@ const projects = [
     impact: ['3 role-specific dashboards', 'Automated student enrollment', 'Relational data architecture'],
     stack: ['React', 'Node.js', 'Express.js', 'MySQL'],
     github: 'https://github.com/suma01111/College-Management-System-DBMS',
-    live: null,
+    // live: null,
     color: 'coral',
   },
 ]
@@ -290,11 +290,10 @@ function App() {
                     </ul>
                     <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
                     <div className="project-actions">
-                      {project.live ? (
+                      {project.live && (
                         <a className="project-action project-action-live" href={project.live} target="_blank" rel="noreferrer">Live Demo <Arrow /></a>
-                      ) : (
-                        <span className="project-action project-action-disabled">Live demo not published</span>
                       )}
+                      {/* Live demo hidden for Personal Finance Tracker and College Management System */}
                       <a className="project-action project-action-github" href={project.github} target="_blank" rel="noreferrer">
                         <img src="https://cdn.simpleicons.org/github/ffffff" alt="" aria-hidden="true" /> GitHub Repository
                       </a>
