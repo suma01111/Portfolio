@@ -8,7 +8,7 @@ const profile = {
   links: {
     linkedin: 'https://www.linkedin.com/in/sunita-choudhary-12941028a/',
     github: 'https://github.com/suma01111',
-    leetcode: 'https://leetcode.com/u/Shree9826/',
+    leetcode: 'https://leetcode.com/u/Suuma001/',
   },
 }
 

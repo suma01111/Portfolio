@@ -93,7 +93,7 @@ Portfolio/
 
 - **GitHub:** [suma01111](https://github.com/suma01111)
 - **LinkedIn:** [sunita-choudhary-12941028a](https://www.linkedin.com/in/sunita-choudhary-12941028a/)
-- **LeetCode:** [Shree9826](https://leetcode.com/u/Shree9826/)
+- **LeetCode:** [Suuma001](https://leetcode.com/u/Suuma001/)
 
 ## License
 
