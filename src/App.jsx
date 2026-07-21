@@ -98,13 +98,20 @@ function App() {
   useEffect(() => emailjs.init(publicKey), [publicKey])
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.documentElement.style.overflow = menuOpen ? 'hidden' : ''
     const closeOnEscape = (event) => {
       if (event.key === 'Escape') setMenuOpen(false)
     }
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 900) setMenuOpen(false)
+    }
     window.addEventListener('keydown', closeOnEscape)
+    window.addEventListener('resize', closeOnDesktop)
     return () => {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
       window.removeEventListener('keydown', closeOnEscape)
+      window.removeEventListener('resize', closeOnDesktop)
     }
   }, [menuOpen])
 
@@ -181,9 +188,9 @@ function App() {
           <button className="wordmark" onClick={scrollHome} aria-label="Back to top">
             <span>SC</span><strong>Sunita Choudhary</strong>
           </button>
-          <nav id="mobile-navigation" className={menuOpen ? 'nav-links is-open' : 'nav-links'} aria-label="Main navigation">
+          <nav className="desktop-nav" aria-label="Main navigation">
             {navItems.map(([label, href]) => (
-              <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+              <a key={href} href={href}>{label}</a>
             ))}
             <a className="nav-cta" href="/resume.pdf" target="_blank" rel="noreferrer">Resume <Arrow /></a>
           </nav>
@@ -192,6 +199,19 @@ function App() {
           </button>
         </div>
       </header>
+
+      <div className={menuOpen ? 'mobile-nav-layer is-open' : 'mobile-nav-layer'} aria-hidden={!menuOpen}>
+        <button className="mobile-nav-backdrop" type="button" onClick={() => setMenuOpen(false)} tabIndex={menuOpen ? 0 : -1} aria-label="Close navigation" />
+        <nav id="mobile-navigation" className="mobile-nav-drawer" aria-label="Mobile navigation">
+          <p className="mobile-nav-label">Navigation</p>
+          {navItems.map(([label, href], index) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)} tabIndex={menuOpen ? 0 : -1}>
+              <span>0{index + 1}</span>{label}
+            </a>
+          ))}
+          <a className="mobile-nav-resume" href="/resume.pdf" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)} tabIndex={menuOpen ? 0 : -1}>Resume <Arrow /></a>
+        </nav>
+      </div>
 
       <main>
         <section className="hero" id="about">
