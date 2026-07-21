@@ -73,7 +73,6 @@ Portfolio/
 ├── public/          # Static assets (resume, profile image, OG image)
 ├── src/
 │   ├── App.jsx      # Main portfolio content and layout
-│   ├── App.css      # Component styles
 │   ├── index.css    # Global styles and design tokens
 │   └── main.jsx     # App entry point
 ├── index.html
