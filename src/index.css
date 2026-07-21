@@ -122,3 +122,21 @@ img{max-width:100%}
 .project,.project:hover,.motion-ready .project.reveal-item.is-visible,.motion-ready .project.reveal-item.is-visible:hover{padding-inline-start:24px;padding-inline-end:0}
 @media(max-width:680px){.project,.project:hover,.motion-ready .project.reveal-item.is-visible,.motion-ready .project.reveal-item.is-visible:hover{padding-inline-start:18px}}
 @media(max-width:480px){.project,.project:hover,.motion-ready .project.reveal-item.is-visible,.motion-ready .project.reveal-item.is-visible:hover{padding-inline-start:16px}}
+
+/* Viewport-aligned mobile navigation drawer */
+.site-shell{overflow-x:clip;overflow-y:visible}
+@media(max-width:900px){
+  .site-header{overflow:visible}.nav-bar{position:relative}
+  .nav-links{position:fixed;top:68px;right:0;bottom:auto;left:0;inset:auto;width:100vw;max-width:none;height:calc(100dvh - 68px);min-height:calc(100vh - 68px);margin:0;padding:clamp(24px,6vh,48px) max(24px,calc((100vw - 760px)/2)) 40px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;background:rgba(7,16,31,.985);border-top:1px solid #263247;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;transform:translate3d(100%,0,0);opacity:0;visibility:hidden;pointer-events:none;z-index:1000;transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .24s ease,visibility 0s linear .38s}
+  .nav-links.is-open{transform:translate3d(0,0,0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .24s ease,visibility 0s}
+  .nav-links a{width:100%;min-height:52px;padding:13px 4px;display:flex;align-items:center;border-bottom:1px solid rgba(148,163,184,.13);font-size:18px;line-height:1.2}
+  .nav-links a:not(.nav-cta)::after{bottom:0}.nav-links .nav-cta{width:fit-content;min-height:44px;margin-top:20px;padding:10px 18px!important;border-bottom:1px solid #fbbf24}
+  .menu-toggle{position:relative;z-index:1001;flex:0 0 40px}
+  .menu-toggle span{position:absolute;left:10px;width:18px;transition:transform .28s ease,top .28s ease}.menu-toggle span:first-child{top:14px}.menu-toggle span:last-child{top:23px}
+  .menu-toggle[aria-expanded='true'] span:first-child{top:19px;transform:rotate(45deg)}.menu-toggle[aria-expanded='true'] span:last-child{top:19px;transform:rotate(-45deg)}
+}
+@media(max-width:480px){
+  .nav-links{top:64px;height:calc(100dvh - 64px);min-height:calc(100vh - 64px);padding:24px 18px 32px}
+  .nav-links a{min-height:50px;font-size:17px}.menu-toggle{flex-basis:38px}.menu-toggle span{left:9px}
+}
+@media(prefers-reduced-motion:reduce){.nav-links{transition:none!important}}

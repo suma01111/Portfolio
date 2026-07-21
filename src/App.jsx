@@ -98,7 +98,14 @@ function App() {
   useEffect(() => emailjs.init(publicKey), [publicKey])
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', closeOnEscape)
+    }
   }, [menuOpen])
 
   useEffect(() => {
@@ -174,13 +181,13 @@ function App() {
           <button className="wordmark" onClick={scrollHome} aria-label="Back to top">
             <span>SC</span><strong>Sunita Choudhary</strong>
           </button>
-          <nav className={menuOpen ? 'nav-links is-open' : 'nav-links'} aria-label="Main navigation">
+          <nav id="mobile-navigation" className={menuOpen ? 'nav-links is-open' : 'nav-links'} aria-label="Main navigation">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
             ))}
             <a className="nav-cta" href="/resume.pdf" target="_blank" rel="noreferrer">Resume <Arrow /></a>
           </nav>
-          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu">
+          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-controls="mobile-navigation" aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
             <span /><span />
           </button>
         </div>
